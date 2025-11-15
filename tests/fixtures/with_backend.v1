@@ -1,0 +1,3 @@
+div(⚡-call: "getUserData") { Loading... }
+button(⚡-call: "submitForm") { Submit }
+span(⚡-data: "username") { Guest }

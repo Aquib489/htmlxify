@@ -1,0 +1,3 @@
+div { <script>alert("XSS")</script> }
+p { <img src=x onerror="alert('XSS')"> }
+span { "><script>alert(String.fromCharCode(88,83,83))</script> }
