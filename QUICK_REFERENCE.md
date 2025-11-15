@@ -1,4 +1,4 @@
-# HTMLx Quick Reference
+# htmlxify Quick Reference
 
 ## Element Syntax
 
@@ -171,16 +171,16 @@ footer.footer {
 
 ```bash
 # Compile
-htmlx input.htmlx output/
+htmlxify input.htmlxify output/
 
 # Verbose
-htmlx input.htmlx output/ --verbose
+htmlxify input.htmlxify output/ --verbose
 
 # Help
-htmlx --help
+htmlxify --help
 
 # Version
-htmlx --version
+htmlxify --version
 ```
 
 ## Semantic HTML Elements
@@ -232,7 +232,7 @@ a(href: "example.com") { }
 ## File Structure
 
 ```
-Input:   mypage.htmlx
+Input:   mypage.htmlxify
          └─→ Compiler
          ├─→ mypage.html (HTML)
          ├─→ mypage.css (Styles)
@@ -250,7 +250,7 @@ Input:   mypage.htmlx
 
 1. Read [README.md](README.md) for overview
 2. Check [HOW_TO_USE.md](HOW_TO_USE.md) for detailed guide
-3. Review `comprehensive_test.htmlx` for examples
+3. Review `comprehensive_test.htmlxify` for examples
 4. Check generated files for clues
 5. Use `--verbose` flag for debugging
 

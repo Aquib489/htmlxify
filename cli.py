@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-HTMLx Compiler - Command Line Interface
+htmlxify Compiler - Command Line Interface
 Usage: htmlx input.htmlx [output-dir]
 """
 
@@ -19,7 +19,7 @@ from HTMLx.generators.js_gen import JSGenerator
 def main():
     """Main entry point"""
     parser = argparse.ArgumentParser(
-        description='HTMLx Compiler',
+        description='htmlxify Compiler',
         epilog='Example: htmlx index.htmlx dist/'
     )
     
@@ -38,7 +38,7 @@ def main():
     parser.add_argument(
         '--version',
         action='version',
-        version='HTMLx Compiler 1.0.0'
+        version='htmlxify Compiler 1.0.0'
     )
     
     parser.add_argument(

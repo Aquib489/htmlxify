@@ -1,11 +1,11 @@
-# Contributing to HTMLx
+# Contributing to htmlxify
 
-Thank you for your interest in contributing to HTMLx! Here's how you can help:
+Thank you for your interest in contributing to htmlxify! Here's how you can help:
 
 ## Getting Started
 
 1. **Fork** the repository
-2. **Clone** your fork: `git clone https://github.com/Aquib489/htmlx.git`
+2. **Clone** your fork: `git clone https://github.com/YOUR_USERNAME/htmlxify.git`
 3. **Create a branch**: `git checkout -b feature/your-feature-name`
 4. **Make changes** and commit: `git commit -am "Add your feature"`
 5. **Push**: `git push origin feature/your-feature-name`
@@ -25,7 +25,7 @@ pip install -r requirements.txt
 pytest tests/unit/test_parser.py -v
 
 # Test compilation
-python cli.py example.htmlx test_output/ --verbose
+python cli.py example.htmlxify test_output/ --verbose
 ```
 
 ## Code Guidelines
@@ -79,5 +79,4 @@ Feel free to:
 - Check existing issues and documentation
 - Review the code comments
 
-Thank you for making HTMLx better! 🚀
-
+Thank you for making htmlxify better! 🚀

@@ -1,5 +1,5 @@
 """
-Setup script for HTMLx - Web Markup Compiler
+Setup script for htmlxify - Web Markup Compiler
 Allows installation via: pip install .
 """
 
@@ -11,22 +11,23 @@ readme = Path('README.md')
 long_description = readme.read_text(encoding='utf-8') if readme.exists() else ''
 
 setup(
-    name='htmlx',
-    version='1.0.1',
-    description='HTMLx - A simplified web markup language compiler that transpiles to HTML, CSS, and JavaScript',
+    name='htmlxify',
+    version='1.0.0',
+    description='htmlxify - A simplified web markup language compiler that transpiles to HTML, CSS, and JavaScript',
     long_description=long_description,
     long_description_content_type='text/markdown',
     
     author='Aquib489',
     author_email='aquib.gaming9@gmail.com',
-    url='https://github.com/Aquib489/htmlx',
+    url='https://github.com/Aquib489/htmlxify',
     
     # Package discovery
     packages=find_packages(exclude=['tests', 'tests.*']),
     
     # Include non-Python files
     package_data={
-        'HTMLx.parser': ['grammar.lark'],
+        'htmlxify.parser': ['grammar.lark'],
+        'Licenses': ['LICENSE'],
     },
     
     # Dependencies
@@ -62,7 +63,7 @@ setup(
     # Command-line scripts
     entry_points={
         'console_scripts': [
-            'htmlx=HTMLx.cli:main',
+            'htmlxify=htmlxify.cli:main',
         ],
     },
     
@@ -80,7 +81,7 @@ setup(
         'Programming Language :: Python :: 3.12',
     ],
     
-    keywords='html compiler web markup transpiler htmlx',
+    keywords='html compiler web markup transpiler htmlxify',
     
     python_requires='>=3.8',
     

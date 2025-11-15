@@ -20,8 +20,8 @@ html(lang: "en") {
     
     main.app-container {
       section.hero {
-        h1.hero-title { Welcome to HTMLx }
-        p.hero-subtitle { Experience the simplicity of HTMLx with built-in security and GPU optimization }
+        h1.hero-title { Welcome to htmlxify }
+        p.hero-subtitle { Experience the simplicity of htmlxify with built-in security and GPU optimization }
         button.cta-button(⚡-call: "trackCTAClick") { Get Started }
       }
       
@@ -299,8 +299,8 @@ html(lang: "en") {
         details {
           summary { Click to expand FAQ }
           div.faq-content {
-            h3 { What is HTMLx? }
-            p { HTMLx is a secure, GPU-optimized markup language for web development }
+            h3 { What is htmlxify? }
+            p { htmlxify is a secure, GPU-optimized markup language for web development }
           }
         }
         
@@ -408,7 +408,7 @@ html(lang: "en") {
           
           h3 { How It Works }
           ol {
-            li { HTMLx uses call attributes for dynamic functionality }
+            li { htmlxify uses call attributes for dynamic functionality }
             li { Compiler converts to data-api-call attribute }
             li { JavaScript detects data-api-call on page load }
             li { JavaScript sends fetch request to backend }
@@ -469,7 +469,7 @@ html(lang: "en") {
             }
           }
           
-          p.copyright { Copyright 2024 HTMLx. All rights reserved. }
+          p.copyright { Copyright 2024 htmlxify. All rights reserved. }
         }
       }
     }

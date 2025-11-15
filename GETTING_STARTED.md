@@ -1,16 +1,16 @@
-# Getting Started with HTMLx
+# Getting Started with htmlxify
 
-Welcome to HTMLx! This guide will get you up and running in 5 minutes.
+Welcome to htmlxify! This guide will get you up and running in 5 minutes.
 
 ## 1. Installation (1 minute)
 
 ### Option A: Install from TestPyPI (Recommended)
 
 ```bash
-pip install -i https://test.pypi.org/simple/ htmlx
+pip install -i https://test.pypi.org/simple/ htmlxify
 ```
 
-Done! You can now use the `htmlx` command.
+Done! You can now use the `htmlxify` command.
 
 ### Option B: Install from Source (For Development)
 
@@ -22,7 +22,7 @@ pip install -r requirements.txt
 pip install -e .
 
 # Step 3: Verify it works
-htmlx --version
+htmlxify --version
 ```
 
 ### Option C: Run Python CLI Directly
@@ -37,12 +37,12 @@ python cli.py --version
 
 ## 2. Create Your First File (1 minute)
 
-Create a file called `hello.htmlx` with this content:
+Create a file called `hello.htmlxify` with this content:
 
 ```markup
 div#app.container {
   h1.title { Hello World }
-  p { Welcome to HTMLx }
+  p { Welcome to htmlxify }
   button.primary { Get Started }
 }
 ```
@@ -53,15 +53,15 @@ Save it in any directory.
 
 ```bash
 # Using installed package (recommended)
-htmlx hello.htmlx output/
+htmlxify hello.htmlxify output/
 
 # Or using Python directly
-python cli.py hello.htmlx output/
+python cli.py hello.htmlxify output/
 ```
 
 You should see:
 ```
-Compiling hello.htmlx...
+Compiling hello.htmlxify...
 ✓ Parsing complete
 ✓ Validation complete
 ✓ Generated HTML, CSS, JavaScript
@@ -74,10 +74,10 @@ Open `output/hello.html` in your web browser.
 
 You'll see a styled page with:
 - A title "Hello World"
-- A subtitle "Welcome to HTMLx"
+- A subtitle "Welcome to htmlxify"
 - A styled button with responsive design
 
-**That's it! You've created your first HTMLx page!** 🎉
+**That's it! You've created your first htmlxify page!** 🎉
 
 ---
 
@@ -168,7 +168,7 @@ nav.navbar {
 }
 
 div.hero {
-  h1 { Build Faster With HTMLx }
+  h1 { Build Faster With htmlxify }
   p { Write less code, ship faster }
   button.primary(⚡-call: "trackCTAClick") { Get Started }
 }
@@ -283,11 +283,11 @@ div(⚡-data: "myData") { ... }            // Data binding
 
 ## Common Questions
 
-**Q: Do I need to install anything to use HTMLx?**
-A: Yes, install from TestPyPI: `pip install -i https://test.pypi.org/simple/ htmlx`
+**Q: Do I need to install anything to use htmlxify?**
+A: Yes, install from TestPyPI: `pip install -i https://test.pypi.org/simple/ htmlxify`
 
 **Q: Do I need Python?**
-A: Yes, Python 3.8+ is required to run HTMLx.
+A: Yes, Python 3.8+ is required to run htmlxify.
 
 **Q: Can I customize the CSS?**
 A: Yes! Modify the generated `.css` file directly.
@@ -299,7 +299,7 @@ A: Yes! The generated `.js` file can be edited.
 A: Upload the `.html`, `.css`, and `.js` files to any web hosting.
 
 **Q: Do I need a backend server?**
-A: No! HTMLx uses mock data. For real API calls, set up a backend.
+A: No! htmlxify uses mock data. For real API calls, set up a backend.
 
 **Q: Can I use different colors/fonts?**
 A: Yes! Edit the CSS file to customize the look.
@@ -310,10 +310,10 @@ A: Yes! Edit the CSS file to customize the look.
 
 ### Error: File not found
 ```bash
-# Make sure file has .htmlx extension
-htmlx myfile.htmlx output/
+# Make sure file has .htmlxify extension
+htmlxify myfile.htmlxify output/
 # or
-python cli.py myfile.htmlx output/
+python cli.py myfile.htmlxify output/
 ```
 
 ### Styles don't appear
@@ -326,9 +326,9 @@ python cli.py myfile.htmlx output/
 ### Syntax error in markup
 ```bash
 # Use verbose mode to see details
-htmlx myfile.htmlx output/ --verbose
+htmlxify myfile.htmlxify output/ --verbose
 # or
-python cli.py myfile.htmlx output/ --verbose
+python cli.py myfile.htmlxify output/ --verbose
 
 # Common mistakes:
 # ❌ div .container (space before dot)
@@ -342,7 +342,7 @@ python cli.py myfile.htmlx output/ --verbose
 - **[README.md](README.md)** - Full documentation
 - **[HOW_TO_USE.md](HOW_TO_USE.md)** - Complete guide
 - **[QUICK_REFERENCE.md](QUICK_REFERENCE.md)** - Syntax cheat sheet
-- **[example.htmlx](example.htmlx)** - Full example
+- **[example.htmlxify](example.htmlxify)** - Full example
 
 ---
 
@@ -350,7 +350,7 @@ python cli.py myfile.htmlx output/ --verbose
 
 ### Day 1: Basics
 - ✓ Download/Install compiler
-- ✓ Create first `.htmlx` file
+- ✓ Create first `.htmlxify` file
 - ✓ Learn element syntax
 - ✓ Try different HTML tags
 
@@ -397,7 +397,7 @@ python cli.py myfile.htmlx output/ --verbose
 
 Pick one of the ideas above and start building. The best way to learn is by doing!
 
-**Happy HTMLx coding!** 🚀
+**Happy htmlxify coding!** 🚀
 
 For help, check [HOW_TO_USE.md](HOW_TO_USE.md) or the [QUICK_REFERENCE.md](QUICK_REFERENCE.md).
 
@@ -490,7 +490,7 @@ nav.navbar {
 }
 
 div.hero {
-  h1 { Build Faster With HTMLx }
+  h1 { Build Faster With htmlxify }
   p { Write less code, ship faster }
   button.primary(⚡-call: "trackCTAClick") { Get Started }
 }
@@ -606,7 +606,7 @@ div(⚡-data: "myData") { ... }            // Data binding
 ## Common Questions
 
 **Q: Do I need to install Node.js?**
-A: No! HTMLx uses Python. Make sure Python 3.x is installed.
+A: No! htmlxify uses Python. Make sure Python 3.x is installed.
 
 **Q: Can I customize the CSS?**
 A: Yes! Modify the generated `.css` file directly.
@@ -618,7 +618,7 @@ A: Yes! The generated `.js` file can be edited.
 A: Upload the `.html`, `.css`, and `.js` files to any web hosting.
 
 **Q: Do I need a backend server?**
-A: No! HTMLx uses mock data. For real API calls, you'll need a backend.
+A: No! htmlxify uses mock data. For real API calls, you'll need a backend.
 
 **Q: Can I use different colors/fonts?**
 A: Yes! Edit the CSS file to customize the look.
@@ -629,8 +629,8 @@ A: Yes! Edit the CSS file to customize the look.
 
 ### Error: File not found
 ```bash
-# Make sure file has .htmlx extension and is in current directory
-python cli.py myfile.htmlx output/
+# Make sure file has .htmlxify extension and is in current directory
+python cli.py myfile.htmlxify output/
 ```
 
 ### Styles don't appear
@@ -643,7 +643,7 @@ python cli.py myfile.htmlx output/
 ### Syntax error in markup
 ```bash
 # Use verbose mode to see details
-python cli.py myfile.htmlx output/ --verbose
+python cli.py myfile.htmlxify output/ --verbose
 
 # Common mistakes:
 # ❌ div .container (space before dot)
@@ -657,7 +657,7 @@ python cli.py myfile.htmlx output/ --verbose
 - **[README.md](README.md)** - Full documentation
 - **[HOW_TO_USE.md](HOW_TO_USE.md)** - Complete guide
 - **[QUICK_REFERENCE.md](QUICK_REFERENCE.md)** - Syntax cheat sheet
-- **[comprehensive_test.htmlx](comprehensive_test.htmlx)** - Full example
+- **[comprehensive_test.htmlxify](comprehensive_test.htmlxify)** - Full example
 
 ---
 
@@ -665,7 +665,7 @@ python cli.py myfile.htmlx output/ --verbose
 
 ### Day 1: Basics
 - ✓ Install compiler
-- ✓ Create first `.htmlx` file
+- ✓ Create first `.htmlxify` file
 - ✓ Learn element syntax
 - ✓ Try different HTML tags
 
@@ -712,6 +712,6 @@ python cli.py myfile.htmlx output/ --verbose
 
 Pick one of the ideas above and start building. The best way to learn is by doing!
 
-**Happy HTMLx coding!** 🚀
+**Happy htmlxify coding!** 🚀
 
 For help, check [HOW_TO_USE.md](HOW_TO_USE.md) or the [QUICK_REFERENCE.md](QUICK_REFERENCE.md).

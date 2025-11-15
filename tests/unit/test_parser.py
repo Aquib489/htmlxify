@@ -3,14 +3,14 @@ Unit tests for parser
 """
 
 import pytest
-from HTMLx.parser.ast_builder import ASTBuilder
+from htmlxify.parser.ast_builder import ASTBuilder
 
 
 def test_simple_element():
     """Test parsing simple element"""
     code = 'div { Hello }'
     
-    builder = ASTBuilder(code, 'test.htmlx')
+    builder = ASTBuilder(code, 'test.htmlxify')
     ast = builder.parse()
     
     assert ast['type'] == 'Document'
@@ -22,7 +22,7 @@ def test_element_with_classes():
     """Test parsing classes"""
     code = 'div.btn.primary { Click }'
     
-    builder = ASTBuilder(code, 'test.htmlx')
+    builder = ASTBuilder(code, 'test.htmlxify')
     ast = builder.parse()
     
     element = ast['children'][0]
@@ -35,7 +35,7 @@ def test_element_with_id():
     """Test parsing ID"""
     code = 'button#submit { Submit }'
     
-    builder = ASTBuilder(code, 'test.htmlx')
+    builder = ASTBuilder(code, 'test.htmlxify')
     ast = builder.parse()
     
     element = ast['children'][0]
@@ -46,7 +46,7 @@ def test_backend_call_attribute():
     """Test ⚡-call attribute"""
     code = 'button(⚡-call: "getData") { Load }'
     
-    builder = ASTBuilder(code, 'test.htmlx')
+    builder = ASTBuilder(code, 'test.htmlxify')
     ast = builder.parse()
     
     element = ast['children'][0]
@@ -57,15 +57,15 @@ def test_invalid_emoji_in_id():
     """Test that emoji IDs cause error"""
     code = 'div#🎨 { Test }'
     
-    builder = ASTBuilder(code, 'test.htmlx')
+    builder = ASTBuilder(code, 'test.htmlxify')
     
     # Should raise parse error or be caught by validator
     # (depends on where we check)
     try:
         ast = builder.parse()
         # If parsing succeeds, validator should catch it
-        from HTMLx.validator.semantic import SemanticValidator
-        validator = SemanticValidator(ast, 'test.htmlx')
+        from htmlxify.validator.semantic import SemanticValidator
+        validator = SemanticValidator(ast, 'test.htmlxify')
         assert not validator.validate()
     except:
         # Parser caught it - that's ok too

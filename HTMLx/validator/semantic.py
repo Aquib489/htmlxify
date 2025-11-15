@@ -235,7 +235,7 @@ if __name__ == '__main__':
         ]
     }
     
-    validator = SemanticValidator(test_ast, 'test.htmlx')
+    validator = SemanticValidator(test_ast, 'test.htmlxify')
     result = validator.validate()
     
     print(f"\nValidation result: {'✅ PASSED' if result else '❌ FAILED'}")

@@ -374,7 +374,7 @@ def test_parser():
                 h1 { My App }
             }
             section.content {
-                p { Welcome to HTMLx }
+                p { Welcome to htmlxify }
                 button(⚡-call: "login") { Login }
             }
         }''', 'Complex nested structure'),
@@ -390,7 +390,7 @@ def test_parser():
         print(f"Input:\n{code}\n")
         
         try:
-            builder = ASTBuilder(code, 'test.htmlx')
+            builder = ASTBuilder(code, 'test.htmlxify')
             ast = builder.parse()
             
             import json

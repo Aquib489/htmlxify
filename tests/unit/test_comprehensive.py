@@ -1,15 +1,15 @@
 """
-Comprehensive unit tests for HTMLx compiler
+Comprehensive unit tests for htmlxify compiler
 """
 
 import pytest
 from pathlib import Path
-from HTMLx.parser.ast_builder import ASTBuilder
-from HTMLx.parser.indent_processor import IndentationProcessor
-from HTMLx.validator.semantic import SemanticValidator
-from HTMLx.generators.html_gen import HTMLGenerator
-from HTMLx.generators.css_gen import CSSGenerator
-from HTMLx.generators.js_gen import JSGenerator
+from htmlxify.parser.ast_builder import ASTBuilder
+from htmlxify.parser.indent_processor import IndentationProcessor
+from htmlxify.validator.semantic import SemanticValidator
+from htmlxify.generators.html_gen import HTMLGenerator
+from htmlxify.generators.css_gen import CSSGenerator
+from htmlxify.generators.js_gen import JSGenerator
 
 
 # ==================== PARSER TESTS ====================
@@ -18,7 +18,7 @@ def test_simple_element():
     """Test parsing simple element"""
     code = 'div { Hello }'
     
-    builder = ASTBuilder(code, 'test.htmlx')
+    builder = ASTBuilder(code, 'test.htmlxify')
     ast = builder.parse()
     
     assert ast['type'] == 'Document'
@@ -30,7 +30,7 @@ def test_element_with_single_class():
     """Test parsing single class"""
     code = 'div.container { Content }'
     
-    builder = ASTBuilder(code, 'test.htmlx')
+    builder = ASTBuilder(code, 'test.htmlxify')
     ast = builder.parse()
     
     element = ast['children'][0]
@@ -42,7 +42,7 @@ def test_element_with_multiple_classes():
     """Test parsing multiple classes"""
     code = 'div.btn.primary.large { Click }'
     
-    builder = ASTBuilder(code, 'test.htmlx')
+    builder = ASTBuilder(code, 'test.htmlxify')
     ast = builder.parse()
     
     element = ast['children'][0]
@@ -57,7 +57,7 @@ def test_element_with_id():
     """Test parsing ID"""
     code = 'button#submit { Submit }'
     
-    builder = ASTBuilder(code, 'test.htmlx')
+    builder = ASTBuilder(code, 'test.htmlxify')
     ast = builder.parse()
     
     element = ast['children'][0]
@@ -69,7 +69,7 @@ def test_element_with_class_and_id():
     """Test parsing class and ID together"""
     code = 'div.container#main { Content }'
     
-    builder = ASTBuilder(code, 'test.htmlx')
+    builder = ASTBuilder(code, 'test.htmlxify')
     ast = builder.parse()
     
     element = ast['children'][0]
@@ -82,7 +82,7 @@ def test_nested_elements():
     """Test parsing nested elements"""
     code = 'div { p { Hello } }'
     
-    builder = ASTBuilder(code, 'test.htmlx')
+    builder = ASTBuilder(code, 'test.htmlxify')
     ast = builder.parse()
     
     div = ast['children'][0]
@@ -97,7 +97,7 @@ def test_multiple_siblings():
     """Test parsing multiple sibling elements"""
     code = 'div { First } span { Second }'
     
-    builder = ASTBuilder(code, 'test.htmlx')
+    builder = ASTBuilder(code, 'test.htmlxify')
     ast = builder.parse()
     
     assert len(ast['children']) == 2
@@ -109,7 +109,7 @@ def test_empty_element():
     """Test parsing empty element"""
     code = 'div {}'
     
-    builder = ASTBuilder(code, 'test.htmlx')
+    builder = ASTBuilder(code, 'test.htmlxify')
     ast = builder.parse()
     
     element = ast['children'][0]
@@ -123,7 +123,7 @@ def test_single_attribute():
     """Test parsing single attribute"""
     code = 'a(href: "/about") { About }'
     
-    builder = ASTBuilder(code, 'test.htmlx')
+    builder = ASTBuilder(code, 'test.htmlxify')
     ast = builder.parse()
     
     element = ast['children'][0]
@@ -136,7 +136,7 @@ def test_multiple_attributes():
     """Test parsing multiple attributes"""
     code = 'input(type: "text", placeholder: "Enter name")'
     
-    builder = ASTBuilder(code, 'test.htmlx')
+    builder = ASTBuilder(code, 'test.htmlxify')
     ast = builder.parse()
     
     element = ast['children'][0]
@@ -149,7 +149,7 @@ def test_backend_call_attribute():
     """Test ⚡-call attribute"""
     code = 'button(⚡-call: "getData") { Load }'
     
-    builder = ASTBuilder(code, 'test.htmlx')
+    builder = ASTBuilder(code, 'test.htmlxify')
     ast = builder.parse()
     
     element = ast['children'][0]
@@ -160,7 +160,7 @@ def test_dynamic_data_attribute():
     """Test ⚡-data attribute"""
     code = 'span(⚡-data: "username") { Guest }'
     
-    builder = ASTBuilder(code, 'test.htmlx')
+    builder = ASTBuilder(code, 'test.htmlxify')
     ast = builder.parse()
     
     element = ast['children'][0]
@@ -173,10 +173,10 @@ def test_valid_identifier():
     """Test valid identifier passes validation"""
     code = 'div#valid-id.valid-class { Content }'
     
-    builder = ASTBuilder(code, 'test.htmlx')
+    builder = ASTBuilder(code, 'test.htmlxify')
     ast = builder.parse()
     
-    validator = SemanticValidator(ast, 'test.htmlx')
+    validator = SemanticValidator(ast, 'test.htmlxify')
     assert validator.validate() == True
 
 
@@ -197,7 +197,7 @@ def test_invalid_emoji_in_id():
         ]
     }
     
-    validator = SemanticValidator(test_ast, 'test.htmlx')
+    validator = SemanticValidator(test_ast, 'test.htmlxify')
     assert validator.validate() == False
     assert len(validator.errors) > 0
 
@@ -221,7 +221,7 @@ def test_performance_warning():
         ]
     }
     
-    validator = SemanticValidator(test_ast, 'test.htmlx')
+    validator = SemanticValidator(test_ast, 'test.htmlxify')
     validator.validate()
     assert len(validator.warnings) > 0
 
@@ -249,7 +249,7 @@ def test_html_generation_simple():
         ]
     }
     
-    gen = HTMLGenerator(test_ast, 'test.htmlx')
+    gen = HTMLGenerator(test_ast, 'test.htmlxify')
     html, _ = gen.generate()
     
     assert '<!DOCTYPE html>' in html
@@ -279,7 +279,7 @@ def test_html_xss_prevention():
         ]
     }
     
-    gen = HTMLGenerator(test_ast, 'test.htmlx')
+    gen = HTMLGenerator(test_ast, 'test.htmlxify')
     html, _ = gen.generate()
     
     assert '<script>' not in html
@@ -303,7 +303,7 @@ def test_html_with_classes_and_id():
         ]
     }
     
-    gen = HTMLGenerator(test_ast, 'test.htmlx')
+    gen = HTMLGenerator(test_ast, 'test.htmlxify')
     html, _ = gen.generate()
     
     assert 'id="main"' in html
@@ -417,11 +417,11 @@ def test_js_data_binding_generation():
 
 def test_fixture_simple():
     """Test compilation of simple fixture"""
-    fixture_path = Path(__file__).parent.parent / 'fixtures' / 'simple.htmlx'
+    fixture_path = Path(__file__).parent.parent / 'fixtures' / 'simple.htmlxify'
     
     if fixture_path.exists():
         code = fixture_path.read_text(encoding='utf-8')
-        builder = ASTBuilder(code, 'simple.htmlx')
+        builder = ASTBuilder(code, 'simple.htmlxify')
         ast = builder.parse()
         
         assert ast['type'] == 'Document'
@@ -430,11 +430,11 @@ def test_fixture_simple():
 
 def test_fixture_with_classes():
     """Test compilation of fixture with classes"""
-    fixture_path = Path(__file__).parent.parent / 'fixtures' / 'with_classes.htmlx'
+    fixture_path = Path(__file__).parent.parent / 'fixtures' / 'with_classes.htmlxify'
     
     if fixture_path.exists():
         code = fixture_path.read_text(encoding='utf-8')
-        builder = ASTBuilder(code, 'with_classes.htmlx')
+        builder = ASTBuilder(code, 'with_classes.htmlxify')
         ast = builder.parse()
         
         has_classes = False

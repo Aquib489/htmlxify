@@ -1,5 +1,5 @@
 """
-Simple Flask Backend Server for HTMLx Compiler
+Simple Flask Backend Server for htmlxify Compiler
 Demonstrates backend integration with the markup language
 """
 
@@ -36,7 +36,7 @@ plans_db = {
 def index():
     """API Documentation"""
     return jsonify({
-        'api': 'HTMLx Backend Example',
+        'api': 'htmlxify Backend Example',
         'version': '1.0',
         'endpoints': {
             'POST /api/trackCTAClick': 'Track CTA button clicks',
@@ -236,7 +236,7 @@ def add_headers(response):
 if __name__ == '__main__':
     print("""
     ╔════════════════════════════════════════╗
-    ║   HTMLx Compiler - Backend Server     ║
+    ║   htmlxify Compiler - Backend Server     ║
     ║   Running on http://localhost:5000     ║
     ╚════════════════════════════════════════╝
     

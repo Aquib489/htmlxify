@@ -40,7 +40,7 @@ class HTMLGenerator:
         # Simple source map (line mappings only)
         source_map = json.dumps({
             "version": 3,
-            "file": self.filename.replace('.htmlx', '.html'),
+            "file": self.filename.replace('.htmlxify', '.html'),
             "sources": [self.filename],
             "names": [],
             "mappings": ""
@@ -176,7 +176,7 @@ if __name__ == '__main__':
         ]
     }
     
-    gen = HTMLGenerator(test_ast, 'test.htmlx')
+    gen = HTMLGenerator(test_ast, 'test.htmlxify')
     html, source_map = gen.generate()
     
     print("Generated HTML:")

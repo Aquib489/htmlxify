@@ -1,6 +1,6 @@
-# How to Use HTMLx - Complete Guide
+# How to Use htmlxify - Complete Guide
 
-This guide walks you through everything you need to know to use the HTMLx compiler effectively.
+This guide walks you through everything you need to know to use the htmlxify compiler effectively.
 
 ## Table of Contents
 
@@ -24,7 +24,7 @@ This guide walks you through everything you need to know to use the HTMLx compil
 **Option 1: Install from TestPyPI (Recommended)**
 
 ```bash
-pip install -i https://test.pypi.org/simple/ htmlx
+pip install -i https://test.pypi.org/simple/ htmlxify
 ```
 
 **Option 2: Install from Source**
@@ -37,12 +37,12 @@ pip install -r requirements.txt
 pip install -e .
 
 # Verify it's installed
-htmlx --help
+htmlxify --help
 ```
 
 ### Step 2: Create Your First File
 
-Create a new file with `.htmlx` extension, for example `mypage.htmlx`:
+Create a new file with `.htmlxify` extension, for example `mypage.htmlxify`:
 
 ```markup
 div { Hello World }
@@ -52,10 +52,10 @@ div { Hello World }
 
 ```bash
 # Using installed package
-htmlx mypage.htmlx output/
+htmlxify mypage.htmlxify output/
 
 # Or using Python CLI
-python cli.py mypage.htmlx output/
+python cli.py mypage.htmlxify output/
 ```
 
 This creates three files in the `output/` directory:
@@ -73,7 +73,7 @@ Open `output/mypage.html` in your browser!
 
 ### Elements
 
-HTMLx uses a simplified syntax for HTML elements:
+htmlxify uses a simplified syntax for HTML elements:
 
 ```markup
 // Creating elements
@@ -472,15 +472,15 @@ meter(value: 6, min: 0, max: 10)
 
 ```bash
 # Using installed package
-htmlx input.htmlx output/
-htmlx input.htmlx output/ --verbose
+htmlxify input.htmlxify output/
+htmlxify input.htmlxify output/ --verbose
 
 # Or using Python CLI
-python cli.py input.htmlx output/
-python cli.py input.htmlx output/ --verbose
+python cli.py input.htmlxify output/
+python cli.py input.htmlxify output/ --verbose
 
 # With verbose output (shows each step)
-python cli.py input.htmlx output/ --verbose
+python cli.py input.htmlxify output/ --verbose
 
 # Show help
 python cli.py --help
@@ -506,12 +506,12 @@ output/
 Use `--verbose` to see detailed compilation steps:
 
 ```bash
-python cli.py myfile.htmlx output/ --verbose
+python cli.py myfile.htmlxify output/ --verbose
 ```
 
 Output:
 ```
-Compiling myfile.htmlx...
+Compiling myfile.htmlxify...
 
 Step 1/6: Parsing...
 ✓ Parsing complete
@@ -538,7 +538,7 @@ Compilation successful!
 ```markup
 article.post {
   header {
-    h1 { How to Use HTMLx }
+    h1 { How to Use htmlxify }
     p.meta { Published on November 12, 2025 }
   }
   
@@ -772,13 +772,13 @@ footer.footer {
 
 **Problem:**
 ```
-Error: File 'myfile.htmlx' not found
+Error: File 'myfile.htmlxify' not found
 ```
 
 **Solution:**
-- Make sure the file exists with `.htmlx` extension
+- Make sure the file exists with `.htmlxify` extension
 - Check the file is in the current directory or use full path
-- Example: `python cli.py C:\path\to\myfile.htmlx output/`
+- Example: `python cli.py C:\path\to\myfile.htmlxify output/`
 
 ### Issue: CSS Not Applying
 
@@ -788,7 +788,7 @@ Error: File 'myfile.htmlx' not found
 1. Make sure the CSS file is in the same directory as HTML
 2. Clear browser cache (Ctrl+Shift+Delete)
 3. Check browser console for errors (F12)
-4. Verify classes/IDs match the ones in your .htmlx file
+4. Verify classes/IDs match the ones in your .htmlxify file
 
 ### Issue: Elements Not Displaying
 
@@ -824,7 +824,7 @@ The compiler automatically handles HTML encoding. Special characters should work
 **Solution:**
 Use verbose mode to see what's happening:
 ```bash
-python cli.py input.htmlx output/ --verbose
+python cli.py input.htmlxify output/ --verbose
 ```
 
 ### Issue: Classes Not Styling (Classes & IDs Syntax)
@@ -862,7 +862,7 @@ button(onclick: "action" data-id: "123") { ... }
 
 ---
 
-## Tips for Better HTMLx Code
+## Tips for Better htmlxify Code
 
 ### Use Semantic HTML
 
@@ -937,12 +937,12 @@ div {
 
 1. **Create your first page** - Start with a simple landing page
 2. **Experiment with classes** - Try different class names
-3. **Use the samples** - Check `comprehensive_test.htmlx` for reference
+3. **Use the samples** - Check `comprehensive_test.htmlxify` for reference
 4. **Customize CSS** - Modify generated `styles.css` for your brand
 5. **Deploy** - Upload your HTML, CSS, JS to web hosting
 
 ---
 
-**Happy HTMLx coding! 🚀**
+**Happy htmlxify coding! 🚀**
 
 For more information, see [README.md](README.md) or review the test examples in `tests/unit/test_parser.py`.

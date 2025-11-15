@@ -1,31 +1,31 @@
 #!/usr/bin/env python3
 """
-HTMLx Compiler - Command Line Interface
-Usage: htmlx input.htmlx [output-dir]
+htmlxify Compiler - Command Line Interface
+Usage: htmlxify input.htmlxify [output-dir]
 """
 
 import sys
 import argparse
 from pathlib import Path
 
-from HTMLx.parser.ast_builder import ASTBuilder
-from HTMLx.parser.indent_processor import IndentationProcessor
-from HTMLx.validator.semantic import SemanticValidator
-from HTMLx.generators.html_gen import HTMLGenerator
-from HTMLx.generators.css_gen import CSSGenerator
-from HTMLx.generators.js_gen import JSGenerator
+from htmlxify.parser.ast_builder import ASTBuilder
+from htmlxify.parser.indent_processor import IndentationProcessor
+from htmlxify.validator.semantic import SemanticValidator
+from htmlxify.generators.html_gen import HTMLGenerator
+from htmlxify.generators.css_gen import CSSGenerator
+from htmlxify.generators.js_gen import JSGenerator
 
 
 def main():
     """Main entry point"""
     parser = argparse.ArgumentParser(
-        description='HTMLx Compiler',
-        epilog='Example: htmlx index.htmlx dist/'
+        description='htmlxify Compiler',
+        epilog='Example: htmlxify index.htmlxify dist/'
     )
     
     parser.add_argument(
         'input',
-        help='Input .htmlx file to compile'
+        help='Input .htmlxify file to compile'
     )
     
     parser.add_argument(
@@ -38,7 +38,7 @@ def main():
     parser.add_argument(
         '--version',
         action='version',
-        version='HTMLx Compiler 1.0.0'
+        version='htmlxify Compiler 1.0.0'
     )
     
     parser.add_argument(
@@ -55,8 +55,8 @@ def main():
         print(f"ERROR: File '{args.input}' not found")
         sys.exit(1)
     
-    if input_path.suffix not in ['.htmlx']:
-        print(f"⚠️  Warning: File extension should be .htmlx")
+    if input_path.suffix not in ['.htmlxify']:
+        print(f"⚠️  Warning: File extension should be .htmlxify")
     
     # Read source
     try:
@@ -104,11 +104,11 @@ def main():
         html_gen = HTMLGenerator(ast, input_path.name)
         html, source_map = html_gen.generate()
         
-        html_path = output_dir / input_path.name.replace('.htmlx', '.html')
+        html_path = output_dir / input_path.name.replace('.htmlxify', '.html')
         html_path.write_text(html, encoding='utf-8')
         
         # Write source map
-        source_map_path = output_dir / (input_path.name.replace('.htmlx', '.html') + '.map')
+        source_map_path = output_dir / (input_path.name.replace('.htmlxify', '.html') + '.map')
         source_map_path.write_text(source_map, encoding='utf-8')
         
         print(f"OK - Generated {html_path}")
@@ -120,7 +120,7 @@ def main():
         css_gen = CSSGenerator(ast)
         css = css_gen.generate()
         
-        css_path = output_dir / input_path.name.replace('.htmlx', '.css')
+        css_path = output_dir / input_path.name.replace('.htmlxify', '.css')
         css_path.write_text(css, encoding='utf-8')
         print(f"OK - Generated {css_path}")
         
@@ -131,7 +131,7 @@ def main():
         js_gen = JSGenerator(ast)
         js = js_gen.generate()
         
-        js_path = output_dir / input_path.name.replace('.htmlx', '.js')
+        js_path = output_dir / input_path.name.replace('.htmlxify', '.js')
         js_path.write_text(js, encoding='utf-8')
         print(f"OK - Generated {js_path}")
         

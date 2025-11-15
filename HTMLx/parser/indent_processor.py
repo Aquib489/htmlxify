@@ -66,7 +66,7 @@ div {
 }
     '''
     
-    builder = ASTBuilder(code, 'test.htmlx')
+    builder = ASTBuilder(code, 'test.htmlxify')
     ast = builder.parse()
     
     processor = IndentationProcessor()
