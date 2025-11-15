@@ -8,12 +8,12 @@ import sys
 import argparse
 from pathlib import Path
 
-from HTMLx.parser.ast_builder import ASTBuilder
-from HTMLx.parser.indent_processor import IndentationProcessor
-from HTMLx.validator.semantic import SemanticValidator
-from HTMLx.generators.html_gen import HTMLGenerator
-from HTMLx.generators.css_gen import CSSGenerator
-from HTMLx.generators.js_gen import JSGenerator
+from htmlxify.parser.ast_builder import ASTBuilder
+from htmlxify.parser.indent_processor import IndentationProcessor
+from htmlxify.validator.semantic import SemanticValidator
+from htmlxify.generators.html_gen import HTMLGenerator
+from htmlxify.generators.css_gen import CSSGenerator
+from htmlxify.generators.js_gen import JSGenerator
 
 
 def main():
