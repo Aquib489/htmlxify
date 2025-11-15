@@ -1,0 +1,38 @@
+div.app#root {
+  header.navbar {
+    h1.logo { My Website }
+    nav.menu {
+      a(href: "/") { Home }
+      a(href: "/about") { About }
+      a(href: "/contact") { Contact }
+    }
+  }
+  
+  main.content {
+    section.hero {
+      h2 { Welcome to the Future }
+      p { Experience modern web development }
+      button.cta#learn-more { Learn More }
+    }
+    
+    section.features {
+      div.feature-card {
+        h3 { Secure by Default }
+        p { Automatic XSS prevention }
+      }
+      div.feature-card {
+        h3 { Performance First }
+        p { GPU-optimized animations }
+      }
+    }
+    
+    section.data-demo {
+      div(⚡-call: "getUserData") { Loading user data... }
+      span(⚡-data: "status") { Active }
+    }
+  }
+  
+  footer {
+    p { © 2024 My Website }
+  }
+}
