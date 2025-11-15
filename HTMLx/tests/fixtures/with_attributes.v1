@@ -1,3 +1,0 @@
-a(href: "/about", target: "_blank") { About Us }
-input(type: "text", placeholder: "Enter name")
-button(disabled: true) { Submit }
