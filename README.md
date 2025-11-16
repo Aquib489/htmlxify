@@ -93,10 +93,10 @@ HTMLXIFY page.HTMLXIFY output/
 
 ### Installation
 
-**Option 1: Install from TestPyPI (Recommended)**
+**Option 1: Install from pip (Recommended)**
 
 ```bash
-pip install -i https://test.pypi.org/simple/ HTMLXIFY
+pip install htmlxify
 ```
 
 Then use the command:
@@ -712,3 +712,4 @@ Made with ❤️ for faster web development
 ---
 
 **HTMLXIFY** - Because simpler markup means faster development. 🚀
+
