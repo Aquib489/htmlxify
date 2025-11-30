@@ -52,6 +52,23 @@ html(lang: "en") {
             p { Semantic validation prevents common HTML errors }
             span.feature-badge(⚡-data: "validationScore") { 100% }
           }
+
+          // Escape block demonstration - handles any special characters
+          article.feature-card {
+            h3 { Escape Block Demo }
+            p { Raw content with special characters: }
+            pre {
+              escape{
+    {}
+    ()
+    ⚡-call
+    @-data
+    etckj #$%^&():".,.><?/
+    
+    Blank lines and whitespace preserved!
+}
+            }
+          }
         }
       }
       

@@ -10,6 +10,7 @@ from pathlib import Path
 
 from htmlxify.parser.ast_builder import ASTBuilder
 from htmlxify.parser.indent_processor import IndentationProcessor
+from htmlxify.parser.escape_preprocessor import EscapeBlockPreprocessor
 from htmlxify.validator.semantic import SemanticValidator
 from htmlxify.generators.html_gen import HTMLGenerator
 from htmlxify.generators.css_gen import CSSGenerator
@@ -55,8 +56,8 @@ def main():
         print(f"❌ Error: File '{args.input}' not found")
         sys.exit(1)
     
-    if input_path.suffix not in ['.htmlx']:
-        print(f"⚠️  Warning: File extension should be .htmlx")
+    if input_path.suffix not in ['.htmlx', '.htmlxify']:
+        print(f"⚠️  Warning: File extension should be .htmlx or .htmlxify")
     
     # Read source
     try:
@@ -68,17 +69,24 @@ def main():
     print(f"\n🔨 Compiling {input_path.name}...\n")
     
     try:
+        # Step 0: Preprocess escape blocks
+        escape_preprocessor = EscapeBlockPreprocessor()
+        processed_source = escape_preprocessor.preprocess(source)
+        
         # Step 1: Parse
         if args.verbose:
-            print("Step 1/6: Parsing...")
+            print("Step 1/7: Parsing...")
         
-        ast_builder = ASTBuilder(source, input_path.name)
+        ast_builder = ASTBuilder(processed_source, input_path.name)
         ast = ast_builder.parse()
         print("✓ Parsing complete")
         
+        # Step 1.5: Restore escape block content
+        ast = escape_preprocessor.restore_escape_content(ast)
+        
         # Step 2: Process indentation
         if args.verbose:
-            print("Step 2/6: Processing indentation...")
+            print("Step 2/7: Processing indentation...")
         
         indent_processor = IndentationProcessor()
         ast = indent_processor.process(ast)
@@ -86,7 +94,7 @@ def main():
         
         # Step 3: Validate
         if args.verbose:
-            print("Step 3/6: Validating...")
+            print("Step 3/7: Validating...")
         
         validator = SemanticValidator(ast, input_path.name)
         if not validator.validate():
@@ -99,7 +107,7 @@ def main():
         
         # Step 5: Generate HTML
         if args.verbose:
-            print("Step 4/6: Generating HTML...")
+            print("Step 5/7: Generating HTML...")
         
         html_gen = HTMLGenerator(ast, input_path.name)
         html, source_map = html_gen.generate()
@@ -115,7 +123,7 @@ def main():
         
         # Step 6: Generate CSS
         if args.verbose:
-            print("Step 5/6: Generating CSS...")
+            print("Step 6/7: Generating CSS...")
         
         css_gen = CSSGenerator(ast)
         css = css_gen.generate()
@@ -126,7 +134,7 @@ def main():
         
         # Step 7: Generate JavaScript
         if args.verbose:
-            print("Step 6/6: Generating JavaScript...")
+            print("Step 7/7: Generating JavaScript...")
         
         js_gen = JSGenerator(ast)
         js = js_gen.generate()

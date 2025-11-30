@@ -10,9 +10,13 @@ from pathlib import Path
 readme = Path('README.md')
 long_description = readme.read_text(encoding='utf-8') if readme.exists() else ''
 
+# Read LICENSE
+license_file = Path('LICENSE')
+license_text = license_file.read_text(encoding='utf-8') if license_file.exists() else ''
+
 setup(
     name='htmlxify',
-    version='1.0.0',
+    version='1.0.2',
     description='htmlxify - A simplified web markup language compiler that transpiles to HTML, CSS, and JavaScript',
     long_description=long_description,
     long_description_content_type='text/markdown',
@@ -27,8 +31,10 @@ setup(
     # Include non-Python files
     package_data={
         'htmlxify.parser': ['grammar.lark'],
-        'Licenses': ['LICENSE'],
     },
+    
+    # Include license and readme
+    license_files=('LICENSE',),
     
     # Dependencies
     install_requires=[
@@ -64,6 +70,7 @@ setup(
     entry_points={
         'console_scripts': [
             'htmlxify=htmlxify.cli:main',
+            'htmlxify-lsp=language_server.server:start_server',
         ],
     },
     

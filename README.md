@@ -73,6 +73,12 @@ HTMLXIFY page.HTMLXIFY output/
 - ✅ **XSS Protection** - Automatic HTML escaping for security
 - ✅ **Fast Compilation** - Single-pass compiler, instant results
 - ✅ **Production Ready** - Generates clean, optimized code
+- ✅ **Void Elements** - Proper `<br>`, `<img>`, `<input>`, `<meta>`, etc. handling
+- ✅ **Escape Sequences** - Support for `/{`, `/}`, `/(`, `/)`
+- ✅ **Escape Blocks** - Raw content with `escape{ }` preserving braces, parentheses
+- ✅ **Boolean Attributes** - HTML5 booleans like `disabled`, `checked`, `required`
+- ✅ **@ Alias** - Use `@-call` and `@-data` as alternatives to `⚡-call` and `⚡-data`
+- ✅ **Language Server** - LSP support for all IDEs (VS Code, Neovim, Sublime, etc.)
 
 ## 📋 Implementation Status
 
@@ -84,16 +90,16 @@ HTMLXIFY page.HTMLXIFY output/
 | **JavaScript Generator** | ✅ Complete (10.6 KB with API handlers) |
 | **CLI Tool** | ✅ Complete & tested |
 | **Standalone Executable** | ✅ Built for distribution (PyPI package) |
-| **Backend Integration** | ✅ Complete (API calls with ⚡-call) |
+| **Backend Integration** | ✅ Complete (API calls with ⚡-call / @-call) |
 | **Semantic Validator** | ✅ Complete |
-| **VS Code Extension** | 🔄 Planned |
-| **Language Server** | 🔄 Planned |
+| **Escape Blocks** | ✅ Complete (raw content with braces, parens) |
+| **Language Server (LSP)** | ✅ Complete (works with all IDEs) |
 
 ## 🚀 Quick Start
 
 ### Installation
 
-**Option 1: Install from pip (Recommended)**
+**Option 1: Install from PyPI (Recommended)**
 
 ```bash
 pip install htmlxify
@@ -160,7 +166,9 @@ This generates:
 
 Open `output/hello.html` in your browser and you're done! 🎉
 
-**That's it!** No configuration, no build tools. Just HTML, CSS, and JS.## 📖 Language Syntax Guide
+**That's it!** No configuration, no build tools. Just HTML, CSS, and JS.
+
+## 📖 Language Syntax Guide
 
 ### Basic Elements
 
@@ -170,6 +178,12 @@ div { Content }
 p { Paragraph }
 h1 { Heading }
 button { Click Me }
+
+// Void elements (no closing tag)
+br
+img(src: "photo.jpg", alt: "Photo")
+input(type: "text")
+meta(charset: "UTF-8")
 ```
 
 ### Classes & IDs
@@ -191,15 +205,66 @@ div.card#featured { ... }
 ### Attributes
 
 ```markup
-// Simple attributes
+// String attributes
 button(onclick: "handleClick") { Click }
-
-// Multiple attributes
-input(type: "email", placeholder: "Enter email", required: true)
-
-// String values
 a(href: "https://example.com", target: "_blank") { Link }
+
+// Boolean attributes (no value)
+input(type: "checkbox", checked)
+input(type: "text", disabled)
+button(disabled) { Can't Click }
+form(novalidate) { ... }
 ```
+
+### Escape Sequences
+
+When you need characters that conflict with syntax, use escape sequences:
+
+```markup
+// Escaped curly braces
+p { JSON: /{ "key": "value" /} }
+
+// Escaped parentheses  
+code { function/(/)/() /{ return true; /} }
+
+// Real-world example
+p { Price: $99.99 (50% off) and formula: x^2 }
+```
+
+### Escape Blocks
+
+For larger blocks of raw content with special characters, use `escape{ }`:
+
+```markup
+// Code with braces and parentheses
+pre {
+  escape{
+    function greet() {
+      console.log("Hello!");
+    }
+  }
+}
+
+// Preserves everything: {}, (), whitespace, special chars
+article {
+  h3 { Code Example }
+  pre { escape{
+    {}
+    ()
+    ⚡-call
+    @-data
+    #$%^&*()
+    
+    Blank lines preserved!
+  } }
+}
+```
+
+The `escape{ }` block:
+- Preserves all special characters literally
+- Maintains whitespace and blank lines
+- Handles nested braces correctly
+- Perfect for code snippets, formulas, JSON
 
 ### Nesting
 
@@ -238,7 +303,13 @@ div {
 ### Backend Integration
 
 ```markup
+// Using ⚡ symbol
 button(⚡-call: "selectPlan", data-plan: "starter") {
+  Select Plan
+}
+
+// Using @ alias (same functionality)
+button(@-call: "selectPlan", data-plan: "starter") {
   Select Plan
 }
 ```
@@ -257,7 +328,13 @@ This generates:
 ### Dynamic Data Binding
 
 ```markup
+// Using ⚡ symbol
 div(⚡-data: "userData") {
+  p { User information }
+}
+
+// Using @ alias
+div(@-data: "userData") {
   p { User information }
 }
 ```
@@ -635,6 +712,66 @@ python cli.py input.HTMLXIFY output/ --verbose
 3. Upload HTML, CSS, JS to any web server
 4. Done! Your site is live 🚀
 
+## 🖥️ IDE Support (Language Server)
+
+HTMLXIFY includes a **professional-grade Language Server Protocol (LSP)** implementation that works with any IDE:
+
+### Features (18+ LSP capabilities)
+
+**Core Features:**
+- ✅ Real-time error detection (parser diagnostics)
+- ✅ Code completion (100+ HTML tags, attributes, escape blocks, snippets)
+- ✅ Hover documentation (tags, @-call/@-data, escape blocks)
+- ✅ Document outline/symbols (tags, IDs, classes hierarchy)
+- ✅ Auto-formatting (smart indentation)
+
+**Navigation:**
+- ✅ Go-to-definition (jump to ID/class definitions)
+- ✅ Find all references (locate all usages of ID/class)
+- ✅ Workspace symbol search (Ctrl+T to find symbols across files)
+
+**Editing:**
+- ✅ Rename support (rename IDs/classes across document)
+- ✅ Code actions (quick fixes for void elements, missing braces)
+- ✅ Signature help (attribute hints while typing)
+- ✅ Document highlight (highlight matching symbols)
+
+**Code Intelligence:**
+- ✅ Folding ranges (collapse/expand code blocks)
+- ✅ Selection range (smart expand/shrink selection)
+- ✅ Document links (clickable URLs in code)
+
+### VS Code Setup
+```json
+// .vscode/settings.json
+{
+  "htmlxify.languageServer.command": "htmlxify-lsp"
+}
+```
+
+### Neovim Setup
+```lua
+-- init.lua
+require('lspconfig').htmlxify.setup{
+  cmd = { 'htmlxify-lsp' },
+  filetypes = { 'htmlx', 'htmlxify' },
+}
+```
+
+### Other IDEs
+The language server works with Sublime Text, Emacs, JetBrains IDEs, Helix, and any editor supporting LSP.
+
+See `language_server/README.md` for detailed setup instructions.
+
+### Running the Server
+```bash
+# After pip install
+htmlxify-lsp
+
+# Or directly
+python -m language_server
+```
+
 ## 🎯 Next Steps
 
 After installing and creating your first file:
@@ -712,4 +849,3 @@ Made with ❤️ for faster web development
 ---
 
 **HTMLXIFY** - Because simpler markup means faster development. 🚀
-
